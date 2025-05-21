@@ -30,7 +30,7 @@ namespace PizzaAPI
                 });
 
             builder.Services.AddDbContext<PizzaContext>(
-            options => options.UseSqlServer(@"Data Source=localhost;Initial Catalog=PizzaDB;Integrated Security=SSPI;TrustServerCertificate=True;")
+            options => options.UseSqlServer(@"Server=tcp:jensensql.database.windows.net,1433;Initial Catalog=jensensql;Persist Security Info=False;User ID=fredrik;Password=Johnjohn10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
             );
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -109,12 +109,8 @@ namespace PizzaAPI
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
 
             app.UseHttpsRedirection();
 
