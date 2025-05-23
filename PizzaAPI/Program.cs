@@ -9,6 +9,7 @@ using System.Text;
 using PizzaAPI.Middleware;
 using PizzaAPI.Data.Repos;
 using PizzaAPI.Core.Services;
+using Azure.Identity;
 
 
 namespace PizzaAPI
@@ -29,8 +30,11 @@ namespace PizzaAPI
                     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 });
 
+            // Connection string & JWT nyckel i keyvault
+            builder.Configuration.AddAzureKeyVault(new Uri("https://pizzavault.vault.azure.net/"), new DefaultAzureCredential());
+
             builder.Services.AddDbContext<PizzaContext>(
-            options => options.UseSqlServer(@"Server=tcp:jensensql.database.windows.net,1433;Initial Catalog=jensensql;Persist Security Info=False;User ID=fredrik;Password=Johnjohn10;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
+            options => options.UseSqlServer(builder.Configuration["ConnectionString"])
             );
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

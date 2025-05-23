@@ -7,8 +7,6 @@ namespace PizzaAPI.Data.Entities
     public class FoodTypeEntity
     {
         [Key]
-        [BindNever]
-        [JsonIgnore]
         public int FoodTypeID { get; set; }
 
         [Required]

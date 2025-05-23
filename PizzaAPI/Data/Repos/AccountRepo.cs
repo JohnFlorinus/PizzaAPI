@@ -57,7 +57,7 @@ namespace PizzaAPI.Data.Repos
                 .SingleOrDefaultAsync(u => u.AccountID == accountEntity.AccountID);
 
             if (user == null)
-                throw new Exception("User does not exist");
+                throw new Exception("User does not exist " + accountEntity.AccountID);
 
             user.Username = accountEntity.Username;
             user.Email = accountEntity.Email;

@@ -35,7 +35,8 @@ namespace PizzaAPI.Core.Services
                 Name = foodCreateDTO.Name,
                 Description = foodCreateDTO.Description,
                 Price = foodCreateDTO.Price,
-                FoodTypeID = foodCreateDTO.FoodTypeID
+                FoodTypeID = foodCreateDTO.FoodTypeID,
+                Ingredients = foodCreateDTO.Ingredients,
             };
 
             await _orderRepo.PostFood(foodEntity);

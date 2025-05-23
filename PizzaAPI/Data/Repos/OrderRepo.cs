@@ -64,7 +64,7 @@ namespace PizzaAPI.Data.Repos
 
         public async Task<int> GetFoodPrice(int foodID)
         {
-            return _context.Foods.Find(foodID).Price;
+            return _context.Foods.FirstOrDefault(f => f.FoodID == foodID).Price;
         }
     }
 }
