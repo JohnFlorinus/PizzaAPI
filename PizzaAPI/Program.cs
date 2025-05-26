@@ -33,9 +33,17 @@ namespace PizzaAPI
             // Connection string & JWT nyckel i keyvault
             builder.Configuration.AddAzureKeyVault(new Uri("https://pizzavault.vault.azure.net/"), new DefaultAzureCredential());
 
-            builder.Services.AddDbContext<PizzaContext>(
-            options => options.UseSqlServer(builder.Configuration["ConnectionString"])
+            builder.Services.AddDbContext<PizzaContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration["ConnectionString"],
+        sqlOptions =>
+        { // För cold starts på Azure SQL Database
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3,
+                maxRetryDelay: TimeSpan.FromSeconds(5),
+                errorNumbersToAdd: null
             );
+        }));
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
