@@ -22,6 +22,7 @@ namespace PizzaAPI.Controllers
             _orderService = orderService;
         }
 
+        /*
                [HttpPost("PostFoodType")]
         public async Task<IActionResult> PostFoodType(FoodTypeEntity foodTypeEntity)
         {
@@ -49,6 +50,7 @@ namespace PizzaAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        */
         
 
         [HttpGet("GetFoodTypes")]
