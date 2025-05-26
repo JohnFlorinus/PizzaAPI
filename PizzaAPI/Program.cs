@@ -10,6 +10,7 @@ using PizzaAPI.Middleware;
 using PizzaAPI.Data.Repos;
 using PizzaAPI.Core.Services;
 using Azure.Identity;
+using PizzaAPI.Core.Interfaces;
 
 
 namespace PizzaAPI

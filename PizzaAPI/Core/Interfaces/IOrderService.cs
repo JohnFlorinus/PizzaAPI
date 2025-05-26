@@ -1,7 +1,7 @@
 ﻿using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
 
-namespace PizzaAPI.Data.Interfaces
+namespace PizzaAPI.Core.Interfaces
 {
     public interface IOrderService
     {

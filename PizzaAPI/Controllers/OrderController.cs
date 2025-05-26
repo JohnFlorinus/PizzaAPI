@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PizzaAPI.Core.Interfaces;
 using PizzaAPI.Data;
 using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
-using PizzaAPI.Data.Interfaces;
 using System.Security.Claims;
 
 namespace PizzaAPI.Controllers

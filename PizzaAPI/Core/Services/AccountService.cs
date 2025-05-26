@@ -1,4 +1,5 @@
-﻿using PizzaAPI.Data.DTOs;
+﻿using PizzaAPI.Core.Interfaces;
+using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
 using PizzaAPI.Data.Interfaces;
 using PizzaAPI.Data.Repos;
@@ -20,17 +21,17 @@ namespace PizzaAPI.Core.Services
         {
             string hashedPassword = CreatePassword(accountEntity.Password);
             accountEntity.Password = hashedPassword;
-            await _accountRepo.Register(accountEntity);
+            AccountEntity userCreds = await _accountRepo.Register(accountEntity);
 
-            string token = _jwtExtension.CreateJwtToken(accountEntity);
+            string token = _jwtExtension.CreateJwtToken(userCreds);
             return token;
         }
 
         public async Task<string> Login(LoginDTO loginDTO)
         {
-            AccountEntity accountEntity = await _accountRepo.Login(loginDTO);
+            AccountEntity userCreds = await _accountRepo.Login(loginDTO);
 
-            string token = _jwtExtension.CreateJwtToken(accountEntity);
+            string token = _jwtExtension.CreateJwtToken(userCreds);
             return token;
         }
 

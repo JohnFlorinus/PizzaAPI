@@ -14,7 +14,7 @@ namespace PizzaAPI.Data.Repos
             _context = context;
         }
 
-        public async Task Register(AccountEntity accountEntity)
+        public async Task<AccountEntity> Register(AccountEntity accountEntity)
         {
             var existingUser = await _context.Accounts
                 .FirstOrDefaultAsync(u => u.Username == accountEntity.Username || u.Email == accountEntity.Email);
@@ -33,6 +33,8 @@ namespace PizzaAPI.Data.Repos
 
             await _context.Accounts.AddAsync(newUser);
             await _context.SaveChangesAsync();
+
+            return newUser;
         }
 
         public async Task<AccountEntity> Login(LoginDTO loginDTO)
